@@ -1,0 +1,84 @@
+
+// function getCurrentProjectUrl() {
+//   return `https://app.zeplin.io/project/${getCurrentProjectId()}`;
+// }
+//
+// function getProjectData(url) {
+//   const parser = new DOMParser();
+//   return fetch(url)
+//     .then(r => r.text())
+//     .then(html => parser.parseFromString(html, "text/html"));
+// }
+//
+// function getScreensData(project) {
+//   debugger;
+//   const screensNode = [].slice.call(project.querySelectorAll('.screen'));
+//
+//   return screensNode.map(screenNode => {
+//
+//     const linkNode = screenNode.querySelector('.screenLink');
+//
+//     return {
+//       id: screenNode.dataset['id'],
+//       name: screenNode.querySelector('.screenName'),
+//       link: linkNode.href,
+//       img: {
+//         src: linkNode.src
+//       },
+//     };
+//   })
+// }
+//
+// function getScreensInCurrentProject() {
+//   return getProjectData(getCurrentProjectUrl())
+//     .then(project => getScreensData(project))
+// }
+
+
+// getScreensInCurrentProject()
+//   .then(screens => {
+//     console.log('*** [contentScript][56] ***', screens);
+//   });
+//
+// function sendMessage(type, data) {
+//   return new Promise((resolve, reject) => {
+//       chrome.runtime.sendMessage(null, {type, data}, function (data) {
+//       if (data) {
+//         resolve(data)
+//       } else {
+//         reject('can not get data from api');
+//       }
+//     });
+//   });
+// }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
+//   console.log('got a request', request);
+//   if (request.type === 'api') {
+//     const {url, headers} = request.data;
+//     fetch(url, headers)
+//       .then(res => res.json())
+//       .then(data => sendResponse(data))
+//       .catch(err => console.log('got an error', err))
+//   }
+// });

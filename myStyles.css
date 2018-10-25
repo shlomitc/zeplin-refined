@@ -1,8 +1,20 @@
 .zr-panel {
+  /*overflow: auto;*/
   position: absolute;
-  top: 60px;
+  top: 61px;
   left: 0;
-  width: 10px;
-  height: 20px;
-  background: blue;
+  width: 300px;
+  height: calc(100vh - 61px);
+  background: lightblue;
+  z-index:9999;
+}
+
+.zr-panel-screens-container {
+
+}
+
+.zr-screen {
+  display: flex;
+  flex-direction: column;
+  padding: 10px;
 }

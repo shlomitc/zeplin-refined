@@ -9,11 +9,12 @@
   "permissions": [
     "activeTab"
   ],
+  "web_accessible_resources": ["contentScript.js"],
   "content_scripts": [
     {
       "matches": ["*://app.zeplin.io/*"],
       "css": ["myStyles.css"],
-      "js": ["contentScript.js"]
+      "js": ["injector.js"]
     }
   ],
   "manifest_version": 2
