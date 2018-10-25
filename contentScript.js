@@ -38,7 +38,6 @@ function getCurrentProjectId() {
 }
 
 function getCurrentProjectData() {
-  console.log('*** [contentScript][34] ***', getCurrentProjectId());
   const url = `https://api.zeplin.io/v2/projects/${getCurrentProjectId()}`;
   const {userToken} = getCookies();
 
@@ -67,21 +66,57 @@ function getCurrentProjectScreensData() {
     });
 }
 
+function whereAmI() {
+  if (document.location.href.match(/\/screen/)) {
+    return 'screen';
+  } else if (document.location.href.match(/project\/(.*)+/)) {
+    return 'project';
+  } else {
+    return 'projects';
+  }
+}
 
-const {screensContainer} = init();
+function addFavoriteBadge() {
+  const screens = [].slice.call(document.querySelectorAll('.screen'));
+  screens.forEach((screen) => {
+    const favorite = document.createElement('div');
+    favorite.className = 'zr-favorite-badge';
+    favorite.dataset.id = screen.dataset.id;
+    favorite.onclick = 'alert(1)';
+    screen.appendChild(favorite);
+  });
+}
 
-getCurrentProjectScreensData()
-  .then(screens => {
-    screens.forEach((screen) => {
-      const screenNode = document.createElement('div');
-      screenNode.className = 'zr-screen';
-      screenNode.id = screen.id;
-      screenNode.innerHTML = `
+function addBoard(screensContainer) {
+  getCurrentProjectScreensData()
+    .then(screens => {
+      screens.forEach((screen) => {
+        const screenNode = document.createElement('div');
+        screenNode.className = 'zr-screen';
+        screenNode.id = screen.id;
+        screenNode.innerHTML = `
         <a href="${screen.url}">
           <img width="100" height="100" src="${screen.img}">
           ${screen.name}
         </a>
       `;
-      screensContainer.appendChild(screenNode)
+        screensContainer.appendChild(screenNode)
+      });
     });
-  });
+
+}
+
+(() => {
+  const {screensContainer} = init();
+  switch (whereAmI()) {
+    case 'projects' :
+      break;
+    case 'project' :
+      addBoard(screensContainer);
+      break;
+    case 'screen' :
+      addFavoriteBadge();
+      addBoard(screensContainer);
+      break;
+  }
+})();

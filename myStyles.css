@@ -1,5 +1,5 @@
 .zr-panel {
-  /*overflow: auto;*/
+  overflow: auto;
   position: absolute;
   top: 61px;
   left: 0;
@@ -17,4 +17,14 @@
   display: flex;
   flex-direction: column;
   padding: 10px;
+}
+
+.zr-favorite-badge {
+  width: 10px;
+  height: 10px;
+  background: red;
+  position: absolute;
+  top: -5px;
+  left: -5px;
+  z-index: 2;
 }
