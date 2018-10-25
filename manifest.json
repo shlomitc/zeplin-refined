@@ -2,5 +2,19 @@
   "name": "zeplin-refined",
   "version": "1.0",
   "description": "Make zeplin better",
+  "background": {
+    "scripts": ["background.js"],
+    "persistent": false
+  },
+  "permissions": [
+    "activeTab"
+  ],
+  "content_scripts": [
+    {
+      "matches": ["*://app.zeplin.io/*"],
+      "css": ["myStyles.css"],
+      "js": ["contentScript.js"]
+    }
+  ],
   "manifest_version": 2
 }
